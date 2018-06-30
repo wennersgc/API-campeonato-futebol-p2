@@ -41,12 +41,6 @@ public class Jogador implements Serializable {
     @NotNull
     private boolean ativo;
 
-    @Column (name = "instante_criacao")
-    public LocalDateTime instanteDaCriacao;
-
-    @JoinColumn (name = "ultima_atualizacao")
-    public LocalDateTime ultimaAtualizacao;
-
     public Jogador() {
     }
 
@@ -96,24 +90,6 @@ public class Jogador implements Serializable {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
-    }
-
-    @PrePersist
-    public void prePersiste() {
-        this.instanteDaCriacao = LocalDateTime.now();
-    }
-
-    public LocalDateTime getInstanteDaCriacao() {
-        return instanteDaCriacao;
-    }
-
-    public void setInstanteDaCriacao(LocalDateTime instanteDaCriacao) {
-        this.instanteDaCriacao = instanteDaCriacao;
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.ultimaAtualizacao = LocalDateTime.now();
     }
 
     @Override
