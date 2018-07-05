@@ -1,7 +1,9 @@
 package com.api.campeonatofutebol.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 import javax.persistence.*;
@@ -11,7 +13,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity (name = "jogador")
@@ -38,8 +39,23 @@ public class Jogador implements Serializable {
     @DecimalMin( value = "1.55")
     private double altura;
 
+    @Column (name = "numero_camisa")
+    private int numeroCamisa;
+
+    private String posicao;
+
     @NotNull
     private boolean ativo;
+
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn (name = "id_time")
+    private Time timeQueJoga;
+
+    @Transient
+    @OneToOne
+    @JsonIgnore
+    private Time timeQueEhCapitao;
 
     public Jogador() {
     }
@@ -84,12 +100,44 @@ public class Jogador implements Serializable {
         this.altura = altura;
     }
 
+    public int getNumeroCamisa() {
+        return numeroCamisa;
+    }
+
+    public void setNumeroCamisa(int numeroCamisa) {
+        this.numeroCamisa = numeroCamisa;
+    }
+
+    public String getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(String posicao) {
+        this.posicao = posicao;
+    }
+
     public boolean isAtivo() {
         return ativo;
     }
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Time getTimeQueJoga() {
+        return timeQueJoga;
+    }
+
+    public void setTimeQueJoga(Time timeQueJoga) {
+        this.timeQueJoga = timeQueJoga;
+    }
+
+    public Time getTimeQueEhCapitao() {
+        return timeQueEhCapitao;
+    }
+
+    public void setTimeQueEhCapitao(Time timeQueEhCapitao) {
+        this.timeQueEhCapitao = timeQueEhCapitao;
     }
 
     @Override

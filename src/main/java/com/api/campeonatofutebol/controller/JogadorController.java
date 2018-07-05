@@ -44,12 +44,12 @@ public class JogadorController {
 
     @GetMapping ("/buscapornome")
     public Jogador buscaPeloNome(@RequestParam String nome) {
-        return jogadorService.buscaPor(nome);
+        return jogadorService.buscarPor(nome);
     }
 
     @GetMapping ("/listapornome")
     public List<Jogador> buscarPeloNome(@RequestParam String nome) {
-        return jogadorService.buscarPor(nome);
+        return jogadorService.listarPor(nome);
     }
 
     @GetMapping ("/listatodos")

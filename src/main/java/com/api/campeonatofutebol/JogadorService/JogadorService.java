@@ -32,13 +32,13 @@ public class JogadorService {
     }
 
     @Transactional (readOnly = true)
-    public List<Jogador> buscarPor(String nome) {
+    public List<Jogador> listarPor(String nome) {
         return  jogadorRepository.findByNomeContaining(nome )
                 .orElse(new ArrayList<>() );
     }
 
-    @Transactional
-    public Jogador buscaPor(String nome) {
+    @Transactional (readOnly = true)
+    public Jogador buscarPor(String nome) {
         return jogadorRepository.findByNome(nome);
     }
 
