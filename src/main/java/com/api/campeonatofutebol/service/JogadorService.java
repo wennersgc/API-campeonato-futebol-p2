@@ -1,4 +1,4 @@
-package com.api.campeonatofutebol.JogadorService;
+package com.api.campeonatofutebol.service;
 
 import com.api.campeonatofutebol.model.Jogador;
 import com.api.campeonatofutebol.repository.JogadorRepository;

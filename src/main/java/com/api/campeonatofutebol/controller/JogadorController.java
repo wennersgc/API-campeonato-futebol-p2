@@ -1,6 +1,6 @@
 package com.api.campeonatofutebol.controller;
 
-import com.api.campeonatofutebol.JogadorService.JogadorService;
+import com.api.campeonatofutebol.service.JogadorService;
 import com.api.campeonatofutebol.model.Jogador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,7 +61,7 @@ public class JogadorController {
     @DeleteMapping ("/{id}")
     @ResponseStatus (HttpStatus.NO_CONTENT)
     public @ResponseBody void excluir(@PathVariable Integer id) {
-        jogadorService.excluir(id);
+        this.atualizarAtributoAtivo(id, false);
     }
 
 

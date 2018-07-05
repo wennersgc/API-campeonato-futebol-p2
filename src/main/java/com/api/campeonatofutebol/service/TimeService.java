@@ -1,6 +1,5 @@
-package com.api.campeonatofutebol.JogadorService;
+package com.api.campeonatofutebol.service;
 
-import com.api.campeonatofutebol.model.Jogador;
 import com.api.campeonatofutebol.model.Time;
 import com.api.campeonatofutebol.repository.TimeRepository;
 import org.springframework.beans.BeanUtils;
@@ -50,7 +49,7 @@ public class TimeService {
 
     @Transactional
     public void excluir(Integer id) {
-        this.timeRepository.deleteById(id);
+        this.atualizarAtributoAtivo(id, false);
     }
 
     @Transactional
@@ -62,6 +61,15 @@ public class TimeService {
         this.salva(time);
 
         return timeManager;
+    }
+
+    @Transactional
+    public void atualizarAtributoAtivo(Integer id, boolean ativo) {
+        Time time = this.buscarPor(id);
+
+        time.setAtivo(ativo);
+
+        timeRepository.save(time);
     }
 
 }

@@ -25,6 +25,8 @@ public class Time {
     @JsonManagedReference
     private List<Jogador> jogadores = new ArrayList<>();
 
+    private Boolean ativo;
+
     @OneToOne
     @JoinColumn (name = "id_capitao")
     private Jogador capitao;
@@ -47,6 +49,14 @@ public class Time {
 
     public List<Jogador> getJogadores() {
         return jogadores;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     public void setJogadores(List<Jogador> jogadores) {

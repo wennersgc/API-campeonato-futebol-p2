@@ -1,6 +1,6 @@
 package com.api.campeonatofutebol.controller;
 
-import com.api.campeonatofutebol.JogadorService.TimeService;
+import com.api.campeonatofutebol.service.TimeService;
 import com.api.campeonatofutebol.model.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -70,6 +70,13 @@ public class TimeController {
         Time timeManager = timeService.atualiza(id, time);
 
         return ResponseEntity.ok(timeManager);
+    }
+
+
+    @PutMapping ("/{id}/ativo")
+    @ResponseStatus (HttpStatus.NO_CONTENT)
+    public void atualizarAtributoAtivo (@PathVariable Integer id, @RequestBody boolean ativo) {
+        timeService.atualizarAtributoAtivo(id, ativo);
     }
 
 
