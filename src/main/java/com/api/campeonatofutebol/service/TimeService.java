@@ -49,7 +49,7 @@ public class TimeService {
 
     @Transactional
     public void excluir(Integer id) {
-        this.atualizarAtributoAtivo(id, false);
+        timeRepository.deleteById(id);
     }
 
     @Transactional

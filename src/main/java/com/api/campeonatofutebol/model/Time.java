@@ -1,6 +1,5 @@
 package com.api.campeonatofutebol.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 

@@ -61,7 +61,7 @@ public class JogadorController {
     @DeleteMapping ("/{id}")
     @ResponseStatus (HttpStatus.NO_CONTENT)
     public @ResponseBody void excluir(@PathVariable Integer id) {
-        this.atualizarAtributoAtivo(id, false);
+        jogadorService.excluir(id);
     }
 
 
