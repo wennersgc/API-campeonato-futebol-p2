@@ -1,5 +1,5 @@
-ALTER TABLE jogador ADD numero_camisa int(11) NOT NULL AFTER altura;
-ALTER TABLE jogador ADD posicao VARCHAR(255) NOT NULL AFTER numero_camisa;
+ALTER TABLE jogador ADD numero_camisa int(11) AFTER altura;
+ALTER TABLE jogador ADD posicao VARCHAR(255) AFTER numero_camisa;
 
 UPDATE jogador SET numero_camisa = 10, posicao = 'Meia esquerda' WHERE id = 1;
 UPDATE jogador SET numero_camisa = 5, posicao = 'Volante' WHERE id = 2;
