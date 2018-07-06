@@ -1,5 +1,6 @@
 package com.api.campeonatofutebol.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity (name = "time")
 public class Time {
@@ -33,6 +35,14 @@ public class Time {
     @OneToOne
     @JoinColumn (name = "id_sede")
     private Estadio sede;
+
+    @OneToMany (mappedBy = "anfitriao", cascade = CascadeType.ALL)
+    @JsonBackReference (value = "anfitriao")
+    private List<Partida> foiAnfitriao;
+
+    @OneToMany (mappedBy = "visitante", cascade = CascadeType.ALL)
+    @JsonBackReference (value = "visitante")
+    private List<Partida> foiVisitante;
 
     public Integer getId() {
         return id;
@@ -80,5 +90,35 @@ public class Time {
 
     public void setSede(Estadio sede) {
         this.sede = sede;
+    }
+
+    public List<Partida> getFoiAnfitriao() {
+        return foiAnfitriao;
+    }
+
+    public void setFoiAnfitriao(List<Partida> foiAnfitriao) {
+        this.foiAnfitriao = foiAnfitriao;
+    }
+
+    public List<Partida> getFoiVisitante() {
+        return foiVisitante;
+    }
+
+    public void setFoiVisitante(List<Partida> foiVisitante) {
+        this.foiVisitante = foiVisitante;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Time time = (Time) o;
+        return Objects.equals(id, time.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
     }
 }

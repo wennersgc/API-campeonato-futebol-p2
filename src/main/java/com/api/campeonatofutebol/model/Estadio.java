@@ -25,6 +25,11 @@ public class Estadio {
 
     private Boolean ativo;
 
+    @OneToOne (mappedBy = "estadioDaPartida")
+    @JsonIgnore
+    @Transient
+    private Partida partida;
+
     public Integer getId() {
         return id;
     }

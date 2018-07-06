@@ -3,8 +3,6 @@ package com.api.campeonatofutebol.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
@@ -51,7 +49,6 @@ public class Jogador implements Serializable {
     @JsonBackReference
     @JoinColumn (name = "id_time")
     private Time timeQueJoga;
-
 
     @OneToOne (mappedBy = "capitao")
     @Transient
@@ -140,6 +137,7 @@ public class Jogador implements Serializable {
     public void setTimeQueEhCapitao(Time timeQueEhCapitao) {
         this.timeQueEhCapitao = timeQueEhCapitao;
     }
+
 
     @Override
     public boolean equals(Object o) {
