@@ -1,6 +1,7 @@
 package com.api.campeonatofutebol.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -34,14 +35,15 @@ public class Time {
 
     @OneToOne
     @JoinColumn (name = "id_sede")
+    @JsonIgnore
     private Estadio sede;
 
     @OneToMany (mappedBy = "anfitriao", cascade = CascadeType.ALL)
-    @JsonBackReference (value = "anfitriao")
+    @JsonManagedReference (value = "anfitriao")
     private List<Partida> foiAnfitriao;
 
     @OneToMany (mappedBy = "visitante", cascade = CascadeType.ALL)
-    @JsonBackReference (value = "visitante")
+    @JsonManagedReference (value = "visitante")
     private List<Partida> foiVisitante;
 
     public Integer getId() {

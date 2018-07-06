@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -24,32 +25,37 @@ public class Partida {
     @Column(name = "data_partida")
     private LocalDate dataDaPartida;
 
+    @NotNull
     @ManyToOne
-    @JsonManagedReference(value = "anfitriao")
+    @JsonBackReference(value = "anfitriao")
     @JoinColumn (name = "id_anfitriao")
     private Time anfitriao;
 
+    @NotNull
     @ManyToOne
-    @JsonManagedReference (value = "visitante")
+    @JsonBackReference(value = "visitante")
     @JoinColumn (name = "id_visitante")
     private Time visitante;
 
+    @DecimalMin(value = "0")
     @Column (name = "gols_anfitriao")
-    private int golsComoAnfitriao;
+    private int golsDoAnfitriao;
 
+    @DecimalMin(value = "0")
     @Column (name = "gols_visitante")
-    private int golsComoVisitante;
+    private int golsDoVisitante;
 
     @DecimalMin(value = "0")
     @DecimalMax(value = "3")
     @Column (name = "pontos_anfitriao")
-    private int pontosComoAnfitriao;
+    private int pontosDoAnfitriao;
 
     @DecimalMin(value = "0")
     @DecimalMax(value = "3")
     @Column (name = "pontos_visitante")
-    private int pontosComoVisitante;
+    private int pontosDoVisitante;
 
+    @NotNull
     @OneToOne
     @JoinColumn(name = "id_estadio")
     private Estadio estadioDaPartida;
@@ -86,36 +92,36 @@ public class Partida {
         this.visitante = visitante;
     }
 
-    public int getGolsComoAnfitriao() {
-        return golsComoAnfitriao;
+    public int getGolsDoAnfitriao() {
+        return golsDoAnfitriao;
     }
 
-    public void setGolsComoAnfitriao(int golsComoAnfitriao) {
-        this.golsComoAnfitriao = golsComoAnfitriao;
+    public void setGolsDoAnfitriao(int golsDoAnfitriao) {
+        this.golsDoAnfitriao = golsDoAnfitriao;
     }
 
-    public int getGolsComoVisitante() {
-        return golsComoVisitante;
+    public int getGolsDoVisitante() {
+        return golsDoVisitante;
     }
 
-    public void setGolsComoVisitante(int golsComoVisitante) {
-        this.golsComoVisitante = golsComoVisitante;
+    public void setGolsDoVisitante(int golsDoVisitante) {
+        this.golsDoVisitante = golsDoVisitante;
     }
 
-    public int getPontosComoAnfitriao() {
-        return pontosComoAnfitriao;
+    public int getPontosDoAnfitriao() {
+        return pontosDoAnfitriao;
     }
 
-    public void setPontosComoAnfitriao(int pontosComoAnfitriao) {
-        this.pontosComoAnfitriao = pontosComoAnfitriao;
+    public void setPontosDoAnfitriao(int pontosDoAnfitriao) {
+        this.pontosDoAnfitriao = pontosDoAnfitriao;
     }
 
-    public int getPontosComoVisitante() {
-        return pontosComoVisitante;
+    public int getPontosDoVisitante() {
+        return pontosDoVisitante;
     }
 
-    public void setPontosComoVisitante(int pontosComoVisitante) {
-        this.pontosComoVisitante = pontosComoVisitante;
+    public void setPontosDoVisitante(int pontosDoVisitante) {
+        this.pontosDoVisitante = pontosDoVisitante;
     }
 
     public Estadio getEstadioDaPartida() {
@@ -125,4 +131,5 @@ public class Partida {
     public void setEstadioDaPartida(Estadio estadioDaPartida) {
         this.estadioDaPartida = estadioDaPartida;
     }
+
 }

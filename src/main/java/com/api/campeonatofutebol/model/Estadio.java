@@ -18,6 +18,10 @@ public class Estadio {
     @Size (min = 5, max = 45)
     private String nome;
 
+    @NotEmpty
+    @Size (min = 10, max = 70)
+    private String endereco;
+
     @OneToOne (mappedBy = "sede")
     @JsonIgnore
     @Transient
@@ -60,6 +64,22 @@ public class Estadio {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public Partida getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
     }
 
     @Override
