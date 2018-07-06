@@ -57,7 +57,7 @@ public class JogadorService {
     public Jogador atualiza(Integer id, Jogador jogador) {
         Jogador jogadorManager = this.buscaPor(id);
 
-        BeanUtils.copyProperties(jogador, jogadorManager, "id", "instanteDaCriacao");
+        BeanUtils.copyProperties(jogador, jogadorManager, "id");
 
         this.salva(jogador);
 

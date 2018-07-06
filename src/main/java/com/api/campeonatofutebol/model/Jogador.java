@@ -52,8 +52,9 @@ public class Jogador implements Serializable {
     @JoinColumn (name = "id_time")
     private Time timeQueJoga;
 
+
+    @OneToOne (mappedBy = "capitao")
     @Transient
-    @OneToOne
     @JsonIgnore
     private Time timeQueEhCapitao;
 

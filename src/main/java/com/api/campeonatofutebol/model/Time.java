@@ -30,6 +30,10 @@ public class Time {
     @JoinColumn (name = "id_capitao")
     private Jogador capitao;
 
+    @OneToOne
+    @JoinColumn (name = "id_sede")
+    private Estadio sede;
+
     public Integer getId() {
         return id;
     }
@@ -68,5 +72,13 @@ public class Time {
 
     public void setCapitao(Jogador capitao) {
         this.capitao = capitao;
+    }
+
+    public Estadio getSede() {
+        return sede;
+    }
+
+    public void setSede(Estadio sede) {
+        this.sede = sede;
     }
 }
