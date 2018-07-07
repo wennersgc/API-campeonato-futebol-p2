@@ -11,6 +11,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity (name = "partida")
 public class Partida {
@@ -59,6 +60,11 @@ public class Partida {
     @OneToOne
     @JoinColumn(name = "id_estadio")
     private Estadio estadioDaPartida;
+
+    @ManyToOne
+    @JsonBackReference (value = "campeonato_partidas")
+    @JoinColumn (name = "id_campeonato")
+    private Campeonato campeonato;
 
     public Integer getId() {
         return id;
@@ -132,4 +138,25 @@ public class Partida {
         this.estadioDaPartida = estadioDaPartida;
     }
 
+    public Campeonato getCampeonato() {
+        return campeonato;
+    }
+
+    public void setCampeonato(Campeonato campeonato) {
+        this.campeonato = campeonato;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Partida partida = (Partida) o;
+        return Objects.equals(id, partida.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
+    }
 }

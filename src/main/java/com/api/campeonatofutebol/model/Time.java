@@ -46,6 +46,10 @@ public class Time {
     @JsonManagedReference (value = "visitante")
     private List<Partida> foiVisitante;
 
+    @ManyToMany (mappedBy = "times")
+    @JsonBackReference (value = "campeonato_times")
+    private List<Campeonato> campeonatos = new ArrayList<>();
+
     public Integer getId() {
         return id;
     }
@@ -108,6 +112,14 @@ public class Time {
 
     public void setFoiVisitante(List<Partida> foiVisitante) {
         this.foiVisitante = foiVisitante;
+    }
+
+    public List<Campeonato> getCampeonatos() {
+        return campeonatos;
+    }
+
+    public void setCampeonatos(List<Campeonato> campeonatos) {
+        this.campeonatos = campeonatos;
     }
 
     @Override
