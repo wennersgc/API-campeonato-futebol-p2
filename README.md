@@ -11,3 +11,5 @@ Deseja-se construir um sistema para gerenciar as informações de campeonatos de
 6. O sistema deve também ser capaz de listar a tabela do campeonato, ordenando os times por classificação, que é calculada em primeiro lugar por saldo de vitórias e em segundo lugar por saldo de gols.                                                                                                          
 
 ---
+
+Wenner Sanner
