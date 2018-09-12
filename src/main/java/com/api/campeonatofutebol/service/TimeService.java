@@ -14,20 +14,22 @@ import java.util.List;
 @Service
 public class TimeService {
     private final TimeRepository timeRepository;
+    private final GenericoService<Time> genericoService;
 
     @Autowired
     public TimeService(TimeRepository timeRepository) {
         this.timeRepository = timeRepository;
+        this.genericoService = new GenericoService<Time>(timeRepository);
     }
 
     @Transactional
     public Time salva(Time time) {
-        return this.timeRepository.save(time);
+        return this.genericoService.salva(time);
     }
 
     @Transactional (readOnly = true)
     public List<Time> todos() {
-        return this.timeRepository.findAll();
+        return this.genericoService.buscaTodasAsEntities();
     }
 
     @Transactional (readOnly = true)
@@ -37,8 +39,7 @@ public class TimeService {
 
     @Transactional (readOnly = true)
     public Time buscarPor(Integer id) {
-        return this.timeRepository.findById(id)
-                .orElseThrow(() -> new EmptyResultDataAccessException(1));
+        return this.genericoService.buscaPor(id);
     }
 
     @Transactional (readOnly = true)

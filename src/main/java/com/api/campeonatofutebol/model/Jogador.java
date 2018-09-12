@@ -37,16 +37,19 @@ public class Jogador implements Serializable {
     @DecimalMin( value = "1.55")
     private double altura;
 
+    @NotEmpty
     @Column (name = "numero_camisa")
     private int numeroCamisa;
 
+    @NotEmpty
     private String posicao;
 
     @NotNull
     private boolean ativo;
 
+    @NotNull
     @ManyToOne
-    @JsonBackReference
+    @JsonIgnore
     @JoinColumn (name = "id_time")
     private Time timeQueJoga;
 

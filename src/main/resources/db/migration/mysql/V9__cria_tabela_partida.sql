@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS partida (
   id INTEGER NOT NULL AUTO_INCREMENT,
   data_partida DATE NOT NULL,
-  id_anfitriao INT NOT NULL,
-  id_visitante INT NOT NULL,
+  id_anfitriao INT,
+  id_visitante INT,
   gols_anfitriao INT NOT NULL,
   gols_visitante INT NOT NULL,
   pontos_anfitriao INT(1) NOT NULL,

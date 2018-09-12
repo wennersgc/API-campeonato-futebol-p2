@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,10 @@ public class Time {
     private String nome;
 
     @OneToMany (mappedBy = "timeQueJoga", cascade = CascadeType.ALL)
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Jogador> jogadores = new ArrayList<>();
 
+    @NotNull
     private Boolean ativo;
 
     @OneToOne
@@ -38,16 +40,18 @@ public class Time {
     @JsonIgnore
     private Estadio sede;
 
+    @NotNull
     @OneToMany (mappedBy = "anfitriao", cascade = CascadeType.ALL)
     @JsonManagedReference (value = "anfitriao")
     private List<Partida> foiAnfitriao;
 
+    @NotNull
     @OneToMany (mappedBy = "visitante", cascade = CascadeType.ALL)
     @JsonManagedReference (value = "visitante")
     private List<Partida> foiVisitante;
 
     @ManyToMany (mappedBy = "times")
-    @JsonBackReference (value = "campeonato_times")
+    @JsonBackReference
     private List<Campeonato> campeonatos = new ArrayList<>();
 
     public Integer getId() {

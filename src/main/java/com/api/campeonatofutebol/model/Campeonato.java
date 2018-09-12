@@ -20,7 +20,7 @@ public class Campeonato {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty
+    @NotNull
     @Size (min = 10, max = 45)
     private String nome;
 
@@ -33,15 +33,13 @@ public class Campeonato {
     @NotNull
     private Boolean ativo;
 
-    @NotNull
-    @ManyToMany
-    @JsonManagedReference (value = "campeonato_times")
+    @ManyToMany (cascade = CascadeType.ALL)
     @JoinTable( name = "campeonato_times",
             joinColumns = {@JoinColumn (name = "id_campeonato")},
             inverseJoinColumns = {@JoinColumn (name = "id_time")} )
+//    @JsonManagedReference (value = "campeonato")
     private List<Time> times = new ArrayList<>();
 
-    @NotNull
     @OneToMany (mappedBy = "campeonato")
     @JsonManagedReference (value = "campeonato_partidas")
     private List<Partida> partidas = new ArrayList<>();

@@ -1,6 +1,7 @@
 package com.api.campeonatofutebol.service;
 
 import com.api.campeonatofutebol.model.Jogador;
+import com.api.campeonatofutebol.model.Partida;
 import com.api.campeonatofutebol.repository.JogadorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,20 +16,22 @@ import java.util.List;
 public class JogadorService {
 
     private final JogadorRepository jogadorRepository;
+    private final GenericoService<Jogador> genericoService;
 
     @Autowired
     public JogadorService(JogadorRepository jogadorRepository) {
         this.jogadorRepository = jogadorRepository;
+        this.genericoService = new GenericoService<Jogador>(jogadorRepository);
     }
 
     @Transactional
     public Jogador salva(Jogador jogador) {
-        return jogadorRepository.save(jogador);
+        return this.genericoService.salva(jogador);
     }
 
     @Transactional (readOnly = true)
     public List<Jogador> todos() {
-        return jogadorRepository.findAll();
+        return this.genericoService.buscaTodasAsEntities();
     }
 
     @Transactional (readOnly = true)
@@ -44,8 +47,7 @@ public class JogadorService {
 
     @Transactional (readOnly = true)
     public Jogador buscaPor(Integer id) {
-        return jogadorRepository.findById(id)
-                .orElseThrow(() -> new EmptyResultDataAccessException(1));
+        return this.genericoService.buscaPor(id);
     }
 
     @Transactional
