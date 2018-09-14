@@ -25,7 +25,7 @@ public class Jogador implements Serializable {
     private String nome;
 
     @NotNull
-    @JsonIgnore
+//    @JsonIgnore
     @JsonFormat (pattern = "dd/MM/yyyy")
     @Column (name = "data_nascimento")
     private LocalDate dataDeNascimento;
@@ -37,7 +37,7 @@ public class Jogador implements Serializable {
     @DecimalMin( value = "1.55")
     private double altura;
 
-    @NotEmpty
+    @NotNull
     @Column (name = "numero_camisa")
     private int numeroCamisa;
 
@@ -47,7 +47,7 @@ public class Jogador implements Serializable {
     @NotNull
     private boolean ativo;
 
-    @NotNull
+//    @NotNull
     @ManyToOne
     @JsonIgnore
     @JoinColumn (name = "id_time")

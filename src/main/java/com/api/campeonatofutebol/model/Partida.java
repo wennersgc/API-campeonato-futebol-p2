@@ -20,8 +20,8 @@ public class Partida {
     private Integer id;
 
     @NotNull
-    @JsonIgnore
-    @JsonFormat(pattern = "dd/MM/yyyy")
+//    @JsonIgnore
+    @JsonFormat (pattern = "dd/MM/yyyy")
     @Column(name = "data_partida")
     private LocalDate dataDaPartida;
 

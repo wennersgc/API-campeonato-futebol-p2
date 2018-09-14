@@ -25,7 +25,7 @@ public class Time {
     private String nome;
 
     @OneToMany (mappedBy = "timeQueJoga", cascade = CascadeType.ALL)
-//    @JsonManagedReference
+    @JsonIgnore
     private List<Jogador> jogadores = new ArrayList<>();
 
     @NotNull
